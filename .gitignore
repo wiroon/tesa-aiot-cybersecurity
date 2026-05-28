@@ -1,0 +1,11 @@
+# OS / editor junk
+.DS_Store
+
+# Claude Code local project settings
+.claude/
+
+# Backup archives (kept locally, not versioned)
+*.zip
+
+# Temp render file
+__shot.html
