@@ -1,0 +1,231 @@
+/* ===========================================================
+   Deck shell — React <Deck> chrome (scaling stage + thumbnail rail).
+   Slide *content* styling lives in globals.css (ported from the
+   design's styles.css / styles-2.css).
+   =========================================================== */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+/* Full viewport: stage area on top, thumbnail rail pinned at the bottom. */
+.deck-viewport {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+}
+
+/* The stage area — flexes to fill everything above the rail. */
+.deck-root {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Fixed 1536×1024 canvas, absolutely centered then scaled.
+   translate(-50%,-50%) centers by the element's OWN size, so it stays
+   centered even when the unscaled box is far larger than the viewport
+   (the bug that pushed the stage off-screen on phones). */
+.deck-stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Slides stacked & overlapped; only the active one is visible. */
+.deck-slide {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.35s ease;
+}
+
+/* ---------------- bottom thumbnail rail ---------------- */
+.deck-rail {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: linear-gradient(0deg, #04101f 0%, rgba(5, 14, 33, 0.82) 100%);
+  border-top: 1px solid rgba(120, 180, 255, 0.18);
+  z-index: 40;
+}
+
+.deck-thumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.deck-thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.deck-thumb {
+  flex: 0 0 auto;
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  line-height: 0;
+  border-radius: 7px;
+}
+.deck-thumb .canvas {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #06122c;
+  border: 2px solid rgba(150, 190, 255, 0.28);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+.deck-thumb:hover .canvas {
+  border-color: rgba(120, 210, 255, 0.7);
+  transform: translateY(-2px);
+}
+.deck-thumb[data-active="true"] .canvas {
+  border-color: #29bfff;
+  box-shadow: 0 0 0 2px rgba(41, 191, 255, 0.55), 0 5px 16px rgba(0, 0, 0, 0.55);
+}
+/* the live mini-render of a slide, scaled into the thumbnail box */
+.deck-thumb .mini {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+  pointer-events: none;
+}
+.deck-thumb .num {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 10px;
+  line-height: 1;
+  color: #eaf3ff;
+  background: rgba(6, 16, 38, 0.72);
+  border: 1px solid rgba(150, 190, 255, 0.4);
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+/* responsive web-view entry tile (first item in the rail) */
+.deck-thumb-link .canvas {
+  border-color: rgba(120, 230, 160, 0.5);
+}
+.deck-thumb-link:hover .canvas {
+  border-color: #5fe0a0;
+}
+.deck-thumb-link .link-tile {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6%;
+  background: linear-gradient(150deg, #0f2f6c 0%, #0a1d44 55%, #0e3a2a 100%);
+}
+.deck-thumb-link .link-tile svg {
+  width: 56%;
+  height: auto;
+}
+.deck-thumb-link .link-label {
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: #d7f5e4;
+  line-height: 1;
+}
+.deck-thumb-link .num {
+  color: #c8f7da;
+  border-color: rgba(120, 230, 160, 0.5);
+}
+
+.deck-rail-arrow {
+  flex: 0 0 auto;
+  appearance: none;
+  border: 1px solid rgba(120, 180, 255, 0.35);
+  background: rgba(20, 40, 80, 0.55);
+  color: #eaf3ff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+.deck-rail-arrow:hover:not(:disabled) {
+  background: rgba(41, 191, 255, 0.35);
+}
+.deck-rail-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* On phones, drop the arrows (thumbnails are enough) and tighten the rail
+   so all slide thumbnails fit without horizontal scrolling. */
+@media (max-width: 640px) {
+  .deck-rail {
+    gap: 6px;
+    padding: 7px 8px;
+  }
+  .deck-thumbs {
+    gap: 8px;
+  }
+  .deck-rail-arrow {
+    display: none;
+  }
+}
+
+/* Print → one slide per page at authored size, no rail. */
+@media print {
+  html,
+  body {
+    overflow: visible;
+    background: #fff;
+  }
+  .deck-viewport {
+    position: static;
+    display: block;
+  }
+  .deck-root {
+    overflow: visible;
+  }
+  .deck-stage {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none !important;
+  }
+  .deck-rail {
+    display: none;
+  }
+  .deck-slide {
+    position: relative;
+    opacity: 1 !important;
+    visibility: visible !important;
+    page-break-after: always;
+    break-after: page;
+  }
+}

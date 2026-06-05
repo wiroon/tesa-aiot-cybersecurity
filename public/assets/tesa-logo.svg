@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="TESA — Thai Embedded Systems Association">
+  <defs>
+    <!-- top arc: left -> right over the top (text upright) -->
+    <path id="tesaTop" d="M 22 78 A 80 80 0 0 1 178 78" fill="none"/>
+    <!-- bottom arc: right -> left under the bottom (text upright, reads L->R) -->
+    <path id="tesaBot" d="M 178 122 A 80 80 0 0 1 22 122" fill="none"/>
+  </defs>
+
+  <!-- white badge plate -->
+  <circle cx="100" cy="100" r="96" fill="#ffffff"/>
+  <circle cx="100" cy="100" r="95" fill="none" stroke="#e2231a" stroke-width="1.2" opacity="0.4"/>
+
+  <!-- circular tagline (textLength forces the full string to span the arc) -->
+  <g fill="#e2231a" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="10">
+    <text text-anchor="middle">
+      <textPath href="#tesaTop" startOffset="50%" textLength="210" lengthAdjust="spacingAndGlyphs">THAI EMBEDDED SYSTEMS ASSOCIATION</textPath>
+    </text>
+    <text text-anchor="middle">
+      <textPath href="#tesaBot" startOffset="50%" textLength="210" lengthAdjust="spacingAndGlyphs">THAI EMBEDDED SYSTEMS ASSOCIATION</textPath>
+    </text>
+  </g>
+
+  <!-- wordmark -->
+  <text x="100" y="101" text-anchor="middle" dominant-baseline="central"
+        font-family="'Saira Condensed', Inter, Arial, sans-serif" font-weight="900"
+        font-size="60" letter-spacing="2" fill="#e2231a">TESA</text>
+</svg>

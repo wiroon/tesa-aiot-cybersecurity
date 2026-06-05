@@ -1,0 +1,272 @@
+/* ===========================================================
+   PAGE 5 — Course Overview (light theme, matches pages 2–4)
+   =========================================================== */
+
+/* highlight stat strip */
+.p5-stats {
+  position: absolute;
+  top: 150px;
+  left: 36px;
+  right: 36px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  z-index: 3;
+}
+.p5-stats .stat {
+  background: #fff;
+  border: 1px solid #d4dff0;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(15, 40, 90, 0.06);
+  padding: 11px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.p5-stats .stat .ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  flex-shrink: 0;
+  background: linear-gradient(180deg, #1d4ea3, #0e2f6d);
+  display: grid;
+  place-items: center;
+}
+.p5-stats .stat:nth-child(3) .ico { background: linear-gradient(180deg, #1577b0, #0c4a78); }
+.p5-stats .stat:nth-child(5) .ico { background: linear-gradient(180deg, #1f8a5b, #0e5236); }
+.p5-stats .stat .ico svg { width: 24px; height: 24px; }
+.p5-stats .stat .sv {
+  font-family: var(--font-en);
+  font-weight: 900;
+  font-size: 21px;
+  color: #0a1e44;
+  line-height: 1;
+}
+.p5-stats .stat .sl {
+  font-family: var(--font-th);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: #42597f;
+  margin-top: 4px;
+  line-height: 1.2;
+}
+
+/* common-core note + tracks */
+.p5-model {
+  position: absolute;
+  top: 236px;
+  left: 36px;
+  right: 36px;
+  z-index: 2;
+}
+.p5-model .core-note {
+  text-align: center;
+  font-family: var(--font-th);
+  font-size: 16.5px;
+  color: #1f3a6b;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.p5-model .core-note b {
+  font-family: var(--font-en);
+  color: #0e2f6d;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.p5-model .core-note .arrow { color: #1577b0; font-weight: 700; }
+
+.p5 .tracks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.p5 .track {
+  background: #fff;
+  border: 1px solid #d4dff0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(15, 40, 90, 0.08);
+  min-height: 388px;
+  display: flex;
+  flex-direction: column;
+}
+.p5 .track .thead {
+  padding: 15px 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.p5 .track.tA .thead { background: linear-gradient(180deg, #1d4ea3, #0e2f6d); }
+.p5 .track.tB .thead { background: linear-gradient(180deg, #1577b0, #0c4a78); }
+.p5 .track.tC .thead { background: linear-gradient(180deg, #1f8a5b, #0e5236); }
+.p5 .track .thead .tleft { display: flex; align-items: center; gap: 12px; }
+.p5 .track .thead .tleft svg { width: 30px; height: 30px; }
+.p5 .track .thead .tag {
+  font-family: var(--font-en);
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 0.08em;
+}
+.p5 .track .thead .lvl {
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.p5 .track .role {
+  padding: 14px 20px 0;
+  font-family: var(--font-th);
+  font-weight: 700;
+  font-size: 19px;
+  color: #0a1e44;
+}
+.p5 .track .role-en {
+  padding: 2px 20px 0;
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #5a6c8a;
+}
+.p5 .track .focus {
+  padding: 14px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.p5 .track .focus .f { display: flex; gap: 10px; align-items: flex-start; }
+.p5 .track .focus .f .dot { width: 19px; height: 19px; flex-shrink: 0; margin-top: 1px; }
+.p5 .track .focus .f .ft {
+  font-family: var(--font-th);
+  font-size: 15.5px;
+  color: #2a3a5c;
+  line-height: 1.35;
+}
+.p5 .track .focus .f .ft b { font-family: var(--font-en); font-weight: 700; color: #0a1e44; }
+
+/* standards + tools band */
+.p5-bottom {
+  position: absolute;
+  top: 678px;
+  left: 36px;
+  right: 36px;
+  bottom: 122px;
+  display: grid;
+  grid-template-columns: 1.28fr 1fr;
+  gap: 22px;
+  z-index: 2;
+}
+.p5-bottom .pcard {
+  background: #fff;
+  border: 1px solid #d4dff0;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(15, 40, 90, 0.06);
+  padding: 15px 22px 16px;
+}
+.p5-bottom .pcard .ph {
+  font-family: var(--font-en);
+  font-weight: 800;
+  font-size: 14.5px;
+  letter-spacing: 0.1em;
+  color: #0e2f6d;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.p5-bottom .pcard .ph svg { width: 22px; height: 22px; }
+.p5-std .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px 22px; }
+.p5-std .si {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  font-family: var(--font-th);
+  font-size: 13.5px;
+  color: #45587b;
+  line-height: 1.25;
+}
+.p5-std .si::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: #1577b0;
+  flex-shrink: 0;
+  transform: translateY(-1px);
+}
+.p5-std .si b { font-family: var(--font-en); font-weight: 700; color: #0a1e44; font-size: 13px; }
+.p5-tools .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.p5-tools .chip {
+  font-family: var(--font-en);
+  font-weight: 600;
+  font-size: 13.5px;
+  color: #0e2f6d;
+  background: #eef3fb;
+  border: 1px solid #d4e1f3;
+  border-radius: 8px;
+  padding: 6px 11px;
+}
+
+/* footer tagline strip */
+.p5-foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 104px;
+  background: linear-gradient(180deg, #0f3a7a 0%, #0a2657 100%);
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0 40px;
+  color: #fff;
+}
+.p5-foot .ico {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.p5-foot .ico svg { width: 32px; height: 32px; }
+.p5-foot .q {
+  font-family: var(--font-th);
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.35;
+  flex: 1;
+}
+.p5-foot .q .accent { color: var(--green-3); }
+.p5-foot .brand {
+  display: flex;
+  flex-direction: column;
+  padding-left: 22px;
+  border-left: 1px solid rgba(150, 200, 255, 0.25);
+}
+.p5-foot .brand .label {
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: 11px;
+  color: #b0c8ec;
+  letter-spacing: 0.18em;
+}
+.p5-foot .brand .name {
+  font-family: var(--font-en);
+  font-weight: 900;
+  font-size: 24px;
+  color: #fff;
+  margin-top: 2px;
+}
+.p5-foot .brand .name .green { color: var(--green-3); }
