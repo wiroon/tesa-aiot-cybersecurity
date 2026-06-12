@@ -163,7 +163,11 @@ export default function Version2() {
             <a href="#register">Register</a>
           </nav>
           <div className="cta">
+            {/* Standard Edition (/ver01) temporarily hidden — nginx also
+                redirects /, /ver01, /responsive → /ver02. Uncomment when the
+                team re-enables the Standard Edition.
             <a className="rv-btn ghost" href="/ver01">Standard Edition →</a>
+            */}
             <a className="rv-btn ghost" href="/ver02/slides">▦ Slides</a>
             <a className="rv-btn green" href="#register">REGISTER</a>
           </div>
