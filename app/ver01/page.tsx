@@ -1,14 +1,13 @@
-// /responsive — alias of /ver01 (Version 1 web view). Kept so existing links
-// (slide-deck "WEB VIEW" tile, shared URLs) continue to work.
+// /ver01 — Version 1 of the course-promotion web (standard TESA AIoT edition).
 import type { Metadata } from "next";
 import Version1 from "@/components/views/Version1";
-import "./responsive.css";
+import "../responsive/responsive.css";
 
 export const metadata: Metadata = {
-  title: "TESA AIoT Cybersecurity — หลักสูตรอบรม (Web View)",
+  title: "TESA AIoT Cybersecurity — หลักสูตรอบรม (Ver 01)",
   description: "AIoT Cybersecurity for Critical Information Infrastructure — หลักสูตรอบรม 2 วัน โดย TESA",
 };
 
-export default function ResponsivePage() {
+export default function Ver01Page() {
   return <Version1 />;
 }

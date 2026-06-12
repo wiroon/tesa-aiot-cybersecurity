@@ -8,6 +8,11 @@ export type SlideDef = {
   node: ReactNode; // server-rendered <section className="slide ...">
 };
 
+// the first rail tile links out to the scrollable web view; configurable so each
+// deck (standard / NT) can point at its own /verNN page.
+type WebView = { href: string; label: string };
+const DEFAULT_WEBVIEW: WebView = { href: "/responsive", label: "WEB VIEW" };
+
 const STAGE_W = 1536;
 const STAGE_H = 1024;
 
@@ -20,7 +25,7 @@ const STAGE_H = 1024;
  *  - keyboard nav: ←/→, PgUp/PgDn, Space, ↑/↓, Home/End, number keys
  *  - tap left/right third of the stage to go prev/next
  */
-export default function Deck({ slides }: { slides: SlideDef[] }) {
+export default function Deck({ slides, webView = DEFAULT_WEBVIEW }: { slides: SlideDef[]; webView?: WebView }) {
   const total = slides.length;
   const [index, setIndex] = useState(0);
   const [scale, setScale] = useState(1);
@@ -148,7 +153,7 @@ export default function Deck({ slides }: { slides: SlideDef[] }) {
           {/* responsive web-view entry point */}
           <a
             className="deck-thumb deck-thumb-link"
-            href="/responsive"
+            href={webView.href}
             aria-label="เปิดมุมมองเว็บแบบ responsive (เลื่อนอ่านได้)"
             title="Responsive web view"
             style={{ width: thumbW }}
@@ -161,7 +166,7 @@ export default function Deck({ slides }: { slides: SlideDef[] }) {
                   <rect x="34" y="9" width="11" height="19" rx="2" fill="#0a1e44" stroke="#7fe0a0" strokeWidth="2" />
                   <line x1="37" y1="24" x2="42" y2="24" stroke="#7fe0a0" strokeWidth="1.4" />
                 </svg>
-                <span className="link-label">WEB VIEW</span>
+                <span className="link-label">{webView.label}</span>
               </span>
             </span>
             <span className="num">↗</span>
