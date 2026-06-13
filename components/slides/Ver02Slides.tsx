@@ -3,12 +3,13 @@
 // the AIoT Cybersecurity Guideline Readiness Workshop spec v4. Styling: v2s.css.
 import * as React from "react";
 import TelecomHero from "@/components/TelecomHero";
+import WhyInfographic from "@/components/WhyInfographic";
 
 /* ----------------------------- shared chrome ----------------------------- */
 function Brand() {
   return (
     <div className="v2s-brand">
-      <img className="nt" src="/assets/nt-logo.png" alt="NT — National Telecom" />
+      <img className="nt" src="/assets/nt-logo.svg" alt="NT — National Telecom" />
       <span className="x">×</span>
       <img className="tesa" src="/assets/tesa-logo.svg" alt="TESA" />
       <span className="aiot">AIoT</span>
@@ -49,10 +50,17 @@ function Title({ kick, children }: { kick: string; children: React.ReactNode }) 
 }
 
 /* --------------------------------- data --------------------------------- */
+const PILLARS = [
+  { sym: "i-bank", t1: "TELECOM INFRASTRUCTURE", t2: "โครงสร้างพื้นฐานโทรคมนาคมของ NT" },
+  { sym: "i-ai-chip", t1: "AIoT CONVERGENCE", t2: "อุปกรณ์ AIoT เชื่อมต่อจำนวนมหาศาล" },
+  { sym: "i-shield-check", t1: "CYBER RESILIENCE", t2: "ลดความเสี่ยงและภัยคุกคามไซเบอร์" },
+  { sym: "i-eye", t1: "NCSA READINESS", t2: "พร้อมรับแนวทาง สกมช. ในอนาคต" },
+];
+
 const WHY = [
-  { th: "Network Operators กำลังดูแลโครงสร้างพื้นฐานที่เชื่อมต่อ AIoT จำนวนมหาศาล", en: "NT infrastructure increasingly connects AIoT devices." },
-  { th: "แนวทางและข้อกำหนดด้าน Cybersecurity ของ สกมช. จะมีผลกระทบต่อการดำเนินงานของ NT ในอนาคต", en: "Future governance requirements should be understood early." },
-  { th: "ช่วยลดความเสี่ยงจากภัยคุกคามไซเบอร์ ต่อบริการและข้อมูลสำคัญขององค์กร", en: "Cybersecurity readiness reduces operational risk." },
+  { th: "Network Operator ที่ต้องรองรับการมาของ AIoT จำนวนมหาศาล", en: "NT infrastructure increasingly connects AIoT devices." },
+  { th: "ข้อกำหนดด้าน Cybersecurity ของ สกมช. ที่ต้องคำนึงในการดำเนินการในอนาคต", en: "Future governance requirements should be understood early." },
+  { th: "เตรียมพร้อมต่อความเสี่ยงจากภัยคุกคามไซเบอร์ ให้ความปลอดภัยต่อบริการและข้อมูลสำคัญขององค์กร", en: "Cybersecurity readiness reduces operational risk." },
   { th: "เสริมสร้างศักยภาพบุคลากร ให้พร้อมรับมือเทคโนโลยีและภัยคุกคามรูปแบบใหม่", en: "People readiness is a strategic investment." },
 ];
 
@@ -61,7 +69,7 @@ const DAY1 = [
   ["NCSA Direction & AIoT Cybersecurity Guideline", "เข้าใจทิศทางระดับชาติของ สกมช. ในอนาคต"],
   ["Critical Information Infrastructure Protection", "เข้าใจการปกป้องโครงสร้างพื้นฐานสำคัญ"],
   ["AIoT Risk Assessment & Management", "เข้าใจวิธีประเมินและบริหารความเสี่ยง"],
-  ["Governance, Policy & Compliance", "เข้าใจความรับผิดชอบด้านการกำกับดูแล"],
+  ["Cyber Drill Case Studies, Policy & Compliance", "เข้าใจความรับผิดชอบด้านการกำกับดูแล"],
 ];
 const DAY2 = [
   ["Asset Visibility & Inventory for AIoT", "รู้ว่ามีสินทรัพย์อะไรในระบบบ้าง"],
@@ -101,7 +109,7 @@ export function V2S1() {
           <div className="eyebrow">NT × TESA · OFFICIAL COLLABORATION</div>
           <span className="badge">2-DAY INTENSIVE PROGRAM</span>
           <h1>
-            AIoT CYBERSECURITY <span className="cyan">GUIDELINE</span> READINESS WORKSHOP
+            <span className="tesa">TESA</span> <span className="aiot">AIoT</span> CYBERSECURITY <span className="guide">GUIDELINE</span> READINESS WORKSHOP
           </h1>
           <p className="sub-en">Understanding Future AIoT Cybersecurity Requirements for Network Operators</p>
           <p className="lead">
@@ -118,6 +126,21 @@ export function V2S1() {
           <TelecomHero />
         </div>
       </div>
+      <div className="v2s-feats">
+        {PILLARS.map((f) => (
+          <div className="v2s-feat" key={f.t1}>
+            <div className="ic">
+              <svg viewBox="0 0 32 32">
+                <use href={`#${f.sym}`} />
+              </svg>
+            </div>
+            <div>
+              <div className="t1">{f.t1}</div>
+              <div className="t2">{f.t2}</div>
+            </div>
+          </div>
+        ))}
+      </div>
       <FootBar />
     </section>
   );
@@ -130,16 +153,25 @@ export function V2S2() {
       <TopBar n="02" />
       <div className="v2s-body">
         <Title kick="WHY NT SHOULD ATTEND">Why NT Should Attend</Title>
-        <div className="v2s-why">
-          {WHY.map((w, i) => (
-            <div className="v2s-msg" key={i}>
-              <div className="num">{String(i + 1).padStart(2, "0")}</div>
-              <div>
-                <h3>{w.th}</h3>
-                <p>{w.en}</p>
-              </div>
+        <div className="v2s-why2">
+          <div className="v2s-wfig">
+            <WhyInfographic />
+            <div className="cap">
+              <b>AIoT × NT × CYBERSECURITY</b>
+              <span>โครงสร้างพื้นฐานที่เชื่อมต่อ ต้องพร้อมรับมือตั้งแต่วันนี้</span>
             </div>
-          ))}
+          </div>
+          <div className="v2s-wcards">
+            {WHY.map((w, i) => (
+              <div className="v2s-wcard" key={i}>
+                <div className="num">{String(i + 1).padStart(2, "0")}</div>
+                <div className="b">
+                  <h3>{w.th}</h3>
+                  <p>{w.en}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <FootBar />
@@ -257,8 +289,7 @@ export function V2S6() {
       <div className="v2s-spon">
         <div className="spon-l">
           <div className="badge">พิเศษ!</div>
-          <h2>NT ไม่ต้องเสียค่าใช้จ่ายใด ๆ</h2>
-          <p className="by">TESA รับผิดชอบค่าใช้จ่ายให้ทั้งหมด</p>
+          <h2>ผู้อบรม NT ไม่มีค่าใช้จ่ายใด ๆ</h2>
           <div className="incl">
             {INCLUDED.map((it) => (
               <div className="i" key={it}>

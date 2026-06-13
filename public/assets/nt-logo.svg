@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 168 92" role="img" aria-label="NT — National Telecom">
+  <!-- gold equalizer mark -->
+  <g fill="#F2B200">
+    <circle cx="13" cy="30" r="5.2"/>
+    <circle cx="29" cy="15" r="5.2"/>
+    <circle cx="45" cy="33" r="5.2"/>
+    <rect x="8.5"  y="44" width="9" height="26" rx="4.5"/>
+    <rect x="24.5" y="30" width="9" height="40" rx="4.5"/>
+    <rect x="40.5" y="48" width="9" height="22" rx="4.5"/>
+  </g>
+  <!-- nt wordmark (bold, dark — clearly legible) -->
+  <text x="62" y="73" font-family="Arial, 'Helvetica Neue', Helvetica, sans-serif"
+        font-weight="700" font-size="66" letter-spacing="-3" fill="#3a3d42">nt</text>
+</svg>
